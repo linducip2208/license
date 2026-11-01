@@ -45,6 +45,7 @@ class VerifyController extends Controller
             'status' => $license->effective_status,
             'product' => $license->product->slug ?? null,
             'customer' => $license->customer_name,
+            'issued_on' => $license->created_at?->toDateString(),
             'expires_on' => $license->expires_on?->toDateString(),
             'activations' => $license->activeActivations()->count() . '/' . $license->max_activations,
             'activation_id' => $act->id,
