@@ -27,7 +27,7 @@ class VerifyController extends Controller
         $license = License::where('code', $code)->first();
 
         if (!$license) {
-            return response()->json(['valid' => false, 'message' => 'Kode lisensi tidak dikenal.'], 404);
+            return response()->json(['valid' => false, 'message' => 'Kode lisensi tidak dikenal.']);
         }
         [$ok, $message] = $license->check($data['hwid']);
         if (!$ok) {
@@ -35,7 +35,7 @@ class VerifyController extends Controller
                 'valid' => false,
                 'message' => $message,
                 'status' => $license->effective_status,
-            ], 403);
+            ]);
         }
         $act = $license->touchActivation($data['hwid'], $data['label'] ?? null);
 
@@ -61,7 +61,7 @@ class VerifyController extends Controller
         $code = strtoupper(str_replace('-', '', trim($data['code'])));
         $code = implode('-', str_split($code, 4));
         $license = License::where('code', $code)->first();
-        if (!$license) return response()->json(['valid' => false, 'message' => 'Unknown code.'], 404);
+        if (!$license) return response()->json(['valid' => false, 'message' => 'Unknown code.']);
         $license->activations()->where('hwid', strtolower(trim($data['hwid'])))->update(['revoked' => true]);
         return response()->json(['valid' => true, 'message' => 'Activation released.']);
     }
