@@ -23,6 +23,10 @@
     <nav class="px-3 space-y-1 text-sm">
       <a href="{{ route('dashboard') }}" class="sidebar-link {{ request()->routeIs('dashboard') ? 'active' : '' }} flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-chart-line w-4"></i> Dashboard</a>
       <a href="{{ route('licenses.index') }}" class="sidebar-link {{ request()->routeIs('licenses.*') ? 'active' : '' }} flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-key w-4"></i> Licenses</a>
+      @if (auth()->user()?->isAdmin())
+      <a href="{{ route('orders.index') }}" class="sidebar-link {{ request()->routeIs('orders.*') ? 'active' : '' }} flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-cart-shopping w-4"></i> Orders</a>
+      <a href="{{ route('settings.index') }}" class="sidebar-link {{ request()->routeIs('settings.*') ? 'active' : '' }} flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-gear w-4"></i> Settings</a>
+      @endif
       <div class="pt-3 px-3 text-[11px] tracking-wider text-gray-400 font-semibold">SYSTEM</div>
       <a href="{{ route('tokens.index') }}" class="sidebar-link {{ request()->routeIs('tokens.*') ? 'active' : '' }} flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-lock w-4"></i> API / MCP</a>
       <a href="{{ route('restore') }}" class="sidebar-link {{ request()->routeIs('restore') ? 'active' : '' }} flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100"><i class="fa-solid fa-rotate-left w-4"></i> Restore license</a>

@@ -20,8 +20,16 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Lindu Cipta Pranayama', 'password' => Hash::make('reseller123'), 'role' => 'reseller']
         );
         Product::firstOrCreate(
-            ['slug' => 'wa-sender'],
-            ['name' => 'WA Sender', 'description' => 'WhatsApp marketing & automation suite', 'is_active' => true]
+            ['slug' => 'personal'],
+            ['name' => 'WA Sender Personal', 'description' => 'Lisensi personal 12 bulan, 1 perangkat', 'is_active' => true]
+        );
+        Product::firstOrCreate(
+            ['slug' => 'reseller'],
+            ['name' => 'WA Sender Reseller', 'description' => 'Lisensi reseller 12 bulan, 3 perangkat', 'is_active' => true]
+        );
+        Product::firstOrCreate(
+            ['slug' => 'distributor'],
+            ['name' => 'WA Sender Distributor', 'description' => 'Lisensi distributor 12 bulan, 10 perangkat', 'is_active' => true]
         );
     }
 }
